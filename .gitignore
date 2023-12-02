@@ -1,0 +1,12 @@
+__pycache__/
+db.sqlite3
+.venv
+.vscode
+
+
+# archivos de config de vistas
+Desktop.ini
+
+# Thumbnails
+._*
+Thumbs.db
