@@ -1,0 +1,32 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break Point</title>
+    <!--icono del titulo-->
+    <link rel="icon" href="{% static './media/icons/0.png' %}">
+    <!--animacion-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--Iconos-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+    <!--estilos css-->
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    {% include 'footer.html' %}
+
+{% block script %}
+{% endblock script %}
+</body> 
+</html>
