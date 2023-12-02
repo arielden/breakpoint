@@ -18,7 +18,6 @@
 ## Contacto
 * Gonzalo Merida - Lgmerida@gmail.com
 * Juan Manuel impellizziere -   juanmanuelmda@gmail.com
-* Maximiliano Rodriguez - maxirodriguezlp@gmail.com
 * Ariel Denaro - arieldenaro@gmail.com
 
 ## Apis
@@ -26,3 +25,8 @@
 * JSON placeholder <- Se usó esta api para extraer una lista de nombres que fueron incorporados al Top 3 de la página reservas.html
 * OpenWeather <- Se usa esta API para recuperar datos en tiempo real de una estación meteorológica específica (Pinamar), estos datos son presentados en la página de reservas
 * GoogleSheets <- Se implementó esta API para el uso de hojas de cálculo como base de datos en el form de contacto.
+
+## Notas adicionales.
+Se crea un superuser de prueba:
+user: root
+pass: pass123
