@@ -34,6 +34,7 @@
                 </div>
             </article>
         </div>
+        {% if request.user.is_authenticated %}
         <div class="form-contenedor">
             <form method="post" action="" name="form-reserva">
                 <h2>Reserva de Canchas</h2>
@@ -42,9 +43,17 @@
                 <input type="tel" name="Telefono" placeholder="Telefono" pattern="[0-9]*" title="Ingresá solo números" required>
                 <input type="email" name="Correo" placeholder="Correo" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresá una dirección de correo válida" required>
                 <textarea name="Mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
-                <input type="submit" value="Enviar" id="submit">
+                <input type="submit" class="btn btn-primary" value="Enviar" id="submit">
             </form>
         </div>
+        <div class="form-contenedor"">
+            <a href="{% url 'app_reserva:logout' %}">Logout</a>
+        </div>   
+        {% else %}
+        <div class="form-contenedor"">
+            <a href="{% url 'app_reserva:login' %}">Login</a>
+        </div>        
+        {% endif %}
     </div>
 {% endblock %}
 {% block script %}

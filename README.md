@@ -27,6 +27,16 @@
 * GoogleSheets <- Se implementó esta API para el uso de hojas de cálculo como base de datos en el form de contacto.
 
 ## Notas adicionales.
-Se crea un superuser de prueba:
+* Se crea un superuser de prueba:
 user: root
 pass: pass123
+
+* Se crean usuarios (clientes) de prueba:
+    - user: ariel
+    - pass: mypass123
+
+    - user: juan
+    - pass: mypass123
+
+    - user: gonzalo
+    - pass: mypass123

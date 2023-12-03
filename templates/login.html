@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="content">
+        <form  id="form" class="form" method="post">
+            {% csrf_token %}
+            <h2>Ingrese a su cuenta</h2>
+            <input type="text" name="username" placeholder="Nombre" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" class="btn btn-primary" value="Enviar" id="submit">
+        </form>
+        <br>
+    </div>
+{% endblock %}
