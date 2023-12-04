@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static './css/contacto.style.css' %}">
+{% endblock %}
 {% block content %}
     <div class="content">
         <form  id="form" class="form" method="post" action="https://formspree.io/f/mdorywya" method="POST" name="form-contacto">

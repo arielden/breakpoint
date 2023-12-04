@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static './css/reserva.style.css' %}">
+{% endblock %}
 {% block content %}
     <div class="contenedor">
         <div class="tabla-contenedor">
@@ -38,19 +41,19 @@
         <div class="form-contenedor">
             <form method="post" action="" name="form-reserva">
                 <h2>Reserva de Canchas</h2>
-                <input type="text" name="Nombre" placeholder="Nombre" required>
-                <input type="text" name="Apellido" placeholder="Apellido" required>
-                <input type="tel" name="Telefono" placeholder="Telefono" pattern="[0-9]*" title="Ingresá solo números" required>
-                <input type="email" name="Correo" placeholder="Correo" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Ingresá una dirección de correo válida" required>
-                <textarea name="Mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
-                <input type="submit" class="btn btn-primary" value="Enviar" id="submit">
+                <input type="text" name="nombre" value="{{ request.user.first_name }}" required>
+                <input type="text" name="apellido" value="{{ request.user.last_name }}" required>
+                <input type="tel" name="telefono" placeholder="Ingrese un teléfono de contacto" pattern="[0-9]*" title="Ingresá solo números" required>
+                <input type="email" name="email" value="{{ request.user.email }}" required>
+                <textarea name="mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
+                <input type="submit" class="btn btn-primary" value="Reservar!" id="submit">
             </form>
         </div>
-        <div class="form-contenedor"">
+        <div class="logout">
             <a href="{% url 'app_reserva:logout' %}">Logout</a>
         </div>   
         {% else %}
-        <div class="form-contenedor"">
+        <div>
             <a href="{% url 'app_reserva:login' %}">Login</a>
         </div>        
         {% endif %}
