@@ -49,8 +49,23 @@
                 <input type="submit" class="btn btn-primary" value="Reservar!" id="submit">
             </form>
         </div>
+        <div class="mi-reserva-contenedor">
+            <h2>Mis reservas</h2>
+            <table>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Horario</th>
+                </tr>
+                <tr>
+                    <td class="fecha-reserva"></td>
+                    <td class="horario-reserva"></td>
+                    <button type="button" class="btn btn-primary">Editar</button>
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </tr>
+            </table>
+        </div>
         <div class="logout">
-            <a class="btn btn- primary" href="{% url 'app_reserva:logout' %}">Logout</a>
+            <button type="button" class="btn btn-danger" href="{% url 'app_reserva:logout' %}">Logout</button>
         </div>   
         {% else %}
         <div>
