@@ -41,10 +41,10 @@
         <div class="form-contenedor">
             <form method="post" action="" name="form-reserva">
                 <h2>Reserva de Canchas</h2>
-                <input type="text" name="nombre" value="{{ request.user.first_name }}" required>
-                <input type="text" name="apellido" value="{{ request.user.last_name }}" required>
+                <input type="text" name="nombre" value="{{ request.user.first_name }}" disabled required>
+                <input type="text" name="apellido" value="{{ request.user.last_name }}" disabled required>
                 <input type="tel" name="telefono" placeholder="Ingrese un teléfono de contacto" pattern="[0-9]*" title="Ingresá solo números" required>
-                <input type="email" name="email" value="{{ request.user.email }}" required>
+                <input type="email" name="email" value="{{ request.user.email }}" disabled required>
                 <textarea name="mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
                 <input type="submit" class="btn btn-primary" value="Reservar!" id="submit">
             </form>
