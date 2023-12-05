@@ -72,12 +72,12 @@ textarea{
 }
 
 .tabla-contenedor {
-    width: 45%;
+    width: 80%;
     height: auto;
     margin-bottom: 20px;
     margin: auto;
     background:linear-gradient(rgb(24,32,111, 0.7),rgba(0, 0, 0, 0.4));
-    padding: 10px 20px;
+    padding: 26px 20px;
     box-sizing: border-box;
     margin-top: 95px;
     margin-bottom: 22px;
@@ -139,7 +139,7 @@ th,td {
 
 @media (max-width: 1366px) {
     .form-contenedor, .tabla-contenedor{
-        width: 60%;
+        width: 80%;
     }
     .contenedor{
         display: block;
@@ -148,7 +148,7 @@ th,td {
 
 @media (min-width: 1280px) {
     .form-contenedor, .tabla-contenedor {
-        width: 35%;
+        width: 70%;
     }
 }
 

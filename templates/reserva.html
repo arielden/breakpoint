@@ -7,23 +7,25 @@
     <div class="contenedor">
         <div class="tabla-contenedor">
             <h2>Precios de Reserva</h2>
-            <table>
-                <tr>
-                    <th>Días/Horario</th>
-                    <th>9hs a 16hs</th>
-                    <th>17hs a 23hs</th>
-                </tr>
-                <tr>
-                    <th>Lunes-Viernes</th>
-                    <td>$1500/pers</td>
-                    <td>$1800/pers</td>
-                </tr>
-                <tr>
-                    <th>Sábado-Domingo</th>
-                    <td>$2000/pers</td>
-                    <td>$2300/pers</td>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="egt">
+                    <tr>
+                        <th>Días/Horario</th>
+                        <th>9hs a 16hs</th>
+                        <th>17hs a 23hs</th>
+                    </tr>
+                    <tr>
+                        <th>Lunes-Viernes</th>
+                        <td>$1500/pers</td>
+                        <td>$1800/pers</td>
+                    </tr>
+                    <tr>
+                        <th>Sábado-Domingo</th>
+                        <td>$2000/pers</td>
+                        <td>$2300/pers</td>
+                    </tr>
+                </table>
+            </div>
             <article>
                 <div class="reservados" id="contenedor-api">
                 </div>
@@ -41,31 +43,40 @@
         <div class="form-contenedor">
             <form method="post" action="" name="form-reserva">
                 <h2>Reserva de Canchas</h2>
-                <input type="text" name="nombre" value="{{ request.user.first_name }}" disabled required>
-                <input type="text" name="apellido" value="{{ request.user.last_name }}" disabled required>
+                <input type="text" name="nombre" value="{{ request.user.first_name }}" disabled required style="color: #fff;">
+                <input type="text" name="apellido" value="{{ request.user.last_name }}" disabled required style="color: #fff;">
                 <input type="tel" name="telefono" placeholder="Ingrese un teléfono de contacto" pattern="[0-9]*" title="Ingresá solo números" required>
-                <input type="email" name="email" value="{{ request.user.email }}" disabled required>
+                <input type="email" name="email" value="{{ request.user.email }}" disabled required style="color: #fff;">
                 <textarea name="mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
                 <input type="submit" class="btn btn-primary" value="Reservar!" id="submit">
             </form>
         </div>
-        <div class="mi-reserva-contenedor">
+        <div id="mi-reserva-contenedor" class="tabla-contenedor" style="width: 70%;">
             <h2>Mis reservas</h2>
-            <table>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Horario</th>
-                </tr>
-                <tr>
-                    <td class="fecha-reserva"></td>
-                    <td class="horario-reserva"></td>
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="egt">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Horario</th>
+                        <th>Realizada</th>
+                        <th>Comentario</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="fecha-reserva"></td>
+                        <td class="horario-reserva"></td>
+                        <td class="Realizada"></td>
+                        <td class="comentario-reserva"></td>
+                        <td><button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class="logout">
-            <button type="button" class="btn btn-danger" href="{% url 'app_reserva:logout' %}">Logout</button>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;" >
+            <button type="button" class="btn btn-danger" href="{% url 'app_reserva:logout' %}" >Logout</button>
         </div>   
         {% else %}
         <div>
