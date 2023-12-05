@@ -5,9 +5,9 @@ services:
     build: .
     command: python /base/manage.py runserver 0.0.0.0:8000
     volumes:
-    - .:/base
+      - .:/base
     ports:
-    - "8000:8000"
+      - "8000:8000"
     depends_on:
       - db
   db:
