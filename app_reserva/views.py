@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import ReservaForm
 from django.contrib import messages
+from app_reserva.models import Reserva
 
 # Create your views here.
 
@@ -18,11 +19,11 @@ def reservaPage(request):
             reserva = form.save(commit=False)
             reserva.cliente = request.user
             reserva.save()
-            return redirect('home')
+            return redirect('app_reserva:reserva')
         print(form.errors) #Si hay errores, los imprime en la terminal.
 
-    context = {'form':form}
-
+    mis_reservas = Reserva.objects.filter(cliente=request.user)
+    context = {'form':form, 'mis_reservas':mis_reservas}
     return render(request, 'reserva.html', context)
 
 def loginPage(request):
@@ -58,3 +59,27 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('app_reserva:reserva')
+
+@login_required(login_url='app_reserva:login')
+def resupdate(request, pk):
+    reserva = Reserva.objects.get(id=pk)
+
+    if request.method == 'POST':
+        form = ReservaForm(request.POST, instance=reserva)
+        if form.is_valid():
+            form.save()
+            return redirect('app_reserva:reserva')
+    else:
+        form = ReservaForm(instance=reserva)
+
+    return render(request, 'resupdate.html', {'form': form, 'reserva': reserva})
+
+@login_required(login_url='app_reserva:login')
+def resdelete(request, pk):
+    reserva = Reserva.objects.get(id=pk)
+
+    if request.method == 'POST':
+        reserva.delete()
+        return redirect('app_reserva:reserva')
+
+    return render(request, 'resdelete.html', {'reserva': reserva})

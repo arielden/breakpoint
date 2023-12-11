@@ -42,13 +42,15 @@
         {% if request.user.is_authenticated %}
         <div class="form-contenedor">
             <form method="post" action="" name="form-reserva">
+                {% csrf_token %}
                 <h2>Reserva de Canchas</h2>
                 <input type="text" name="nombre" value="{{ request.user.first_name }}" disabled required style="color: #fff;">
                 <input type="text" name="apellido" value="{{ request.user.last_name }}" disabled required style="color: #fff;">
-                <input type="tel" name="telefono" placeholder="Ingrese un teléfono de contacto" pattern="[0-9]*" title="Ingresá solo números" required>
                 <input type="email" name="email" value="{{ request.user.email }}" disabled required style="color: #fff;">
-                <textarea name="mensaje" rows="5" placeholder="Ingresá fecha y horario de reserva!" required></textarea>
-                <input type="submit" class="btn btn-primary" value="Reservar!" id="submit">
+                <input type="text" name="fecha_reserva" placeholder="Ingrese fecha dd/mm/aaaa" required>
+                <input type="text" name="horario_reserva" placeholder="Ingrese horario hh:mm" required>
+                <textarea name="comentario" rows="5" placeholder="Comentarios adicionales..."></textarea>
+                <input type="submit" class="btn btn-primary" value="Validar!" id="submit">
             </form>
         </div>
         <div id="mi-reserva-contenedor" class="tabla-contenedor" style="width: 70%;">
@@ -58,25 +60,27 @@
                     <tr>
                         <th>Fecha</th>
                         <th>Horario</th>
-                        <th>Realizada</th>
                         <th>Comentario</th>
                         <th></th>
                     </tr>
+                    {% for reserva in mis_reservas %}
                     <tr>
-                        <td class="fecha-reserva"></td>
-                        <td class="horario-reserva"></td>
-                        <td class="Realizada"></td>
-                        <td class="comentario-reserva"></td>
-                        <td><button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        <td class="fecha-reserva">{{ reserva.fecha_reserva }}</td>
+                        <td class="horario-reserva">{{ reserva.horario_reserva }}</td>
+                        <td class="comentario-reserva">{{ reserva.comentario }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href="{% url 'app_reserva:resupdate' reserva.id %}" class="btn btn-info">Actualizar</a>
+                                <a href="{% url 'app_reserva:resdelete' reserva.id %}" class="btn btn-danger">Borrar</a>
+                            </div>
                         </td>
-                        
                     </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;" >
-            <button type="button" class="btn btn-danger" href="{% url 'app_reserva:logout' %}" >Logout</button>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;">
+            <a class="btn btn-danger" href="{% url 'app_reserva:logout' %}">Logout</a>
         </div>   
         {% else %}
         <div>
@@ -85,43 +89,9 @@
         {% endif %}
     </div>
 {% endblock %}
+
+
 {% block script %}
-<script>
-    async function verificador(event) {
-    event.preventDefault();
-
-    // Acá se valido los datos del formulario
-    if (!formValido()) {
-        alert("Atención!: Completá los campos correctamente");
-        return;
-    }
-
-    const form = new FormData(this);
-    const response = await fetch(this.action, {
-        method: this.method,
-        body: form,
-        headers: {
-            "Accept": "application/json"
-        }
-    });
-
-    if (response.ok) {
-        this.reset();
-        alert("Gracias por reservar tu cancha en Break Point. Nos pondremos en contacto pronto.");
-    }
-    }
-
-    function validadorForm() {
-    const requiredFields = document.querySelectorAll('[required]');
-    for (const field of requiredFields) {
-        if (!field.value.trim()) {
-            return false;
-        }
-    }
-    return true;
-    }
-    </script>
-    <script src="{% static './js/formHoja.js' %}"></script>
     <script src="{% static './js/api.js' %}"></script>
     <script src="{% static './js/apiweather.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static './css/reserva.style.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="contenedor">
+        {% if request.user.is_authenticated %}
+        <div class="form-contenedor">
+            <form method="post" action="" name="form-reserva">
+                {% csrf_token %}
+                <h2>Eliminar Reserva</h2>
+                <input type="text" name="nombre" value="{{ request.user.first_name }}" disabled required style="color: #fff;">
+                <input type="text" name="apellido" value="{{ request.user.last_name }}" disabled required style="color: #fff;">
+                <input type="email" name="email" value="{{ request.user.email }}" disabled required style="color: #fff;">
+                <input type="text" name="fecha_reserva" value="{{ reserva.fecha_reserva }}" disabled placeholder="Ingrese fecha dd/mm/aaaa" required>
+                <input type="text" name="horario_reserva"  value="{{ reserva.horario_reserva }}" disabled placeholder="Ingrese horario hh:mm" required>
+                <textarea name="comentario" rows="5" placeholder="Comentarios adicionales..." disabled>{{ reserva.comentario }}</textarea>
+                <input type="submit" class="btn btn-danger" value="Borrar!" id="submit">
+            </form>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;">
+            <a class="btn btn-danger" href="{% url 'app_reserva:logout' %}">Logout</a>
+        </div>   
+        {% else %}
+        <div>
+            <a href="{% url 'app_reserva:login' %}">Login</a>
+        </div>        
+        {% endif %}
+    </div>
+{% endblock %}

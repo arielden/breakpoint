@@ -11,11 +11,9 @@
     margin: 6rem 0 0 2rem;
 }
 
-/* CARRUSEL------------------------------------------------------------------------------------------------------------------------------------- */
 h4 {
     font-weight: 700;
     font-size: 46px;
-    line-height: 54px;
 }
 
 h5 {
@@ -61,9 +59,11 @@ h6 {
     position: relative;
 }
 
-.ofertas>h4 {
-    font-size: 40px;
-    padding-bottom: 0.5rem;
+.ofertas.oftitle {
+    width: 80%;
+    margin: 2rem auto;
+    position: relative;
+    display: flex;
 }
 
 .ofertas-container {
