@@ -28,7 +28,6 @@ def reservaPage(request):
 
 def loginPage(request):
 
-    # Si el usuario está logueado, redirecciona al home
     if request.user.is_authenticated: 
         return redirect('app_reserva:reserva')
 
@@ -46,7 +45,7 @@ def loginPage(request):
         #Verifica que las credenciales sean correctas
         user = authenticate(request, username=username, password=password)
 
-        #Si existe lo enviamos al home
+        #Si existe lo enviamos al la página reservas.html
         if user is not None:
             login(request, user)
             return redirect('app_reserva:reserva')

@@ -61,13 +61,15 @@
                         <th>Fecha</th>
                         <th>Horario</th>
                         <th>Comentario</th>
-                        <th></th>
+                        <th>Última modificación</th>
+                        <th>Acciones</th>
                     </tr>
                     {% for reserva in mis_reservas %}
                     <tr>
                         <td class="fecha-reserva">{{ reserva.fecha_reserva }}</td>
                         <td class="horario-reserva">{{ reserva.horario_reserva }}</td>
                         <td class="comentario-reserva">{{ reserva.comentario }}</td>
+                        <td class="modificacion">{{ reserva.modificacion }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <a href="{% url 'app_reserva:resupdate' reserva.id %}" class="btn btn-info">Actualizar</a>

@@ -27,3 +27,7 @@ body {
     /* height: 100%     !important ;/*controlar los tamaños*/
     /* width: 100%;controlar los tamaños */
 }
+
+.messages {
+    padding-top: 80px;
+}
